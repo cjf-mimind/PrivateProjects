@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <title>Top Eleven球员身价表</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript" src="./index.js"></script>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            $("#PlayerAge").val("18");
+            AgeChange();
+        }
+
+        function AgeChange() {
+            var age = $("#PlayerAge").val();
+            var json = JSON.parse(JsonData);
+            var agekey;
+            agekey = json[age];
+            $("#PlayerAbility").empty();
+            for (var key in agekey) {
+                var op = new Option(key, key);
+                $("#PlayerAbility").append(op);
+            }
+            AbtChange();
+        }
+
+        function AbtChange() {
+            var age = $("#PlayerAge").val();;
+            var abt = $("#PlayerAbility").val();
+            var json = JSON.parse(JsonData);
+            var agekey, abtkey;
+            agekey = json[age];
+            abtkey = agekey[abt];
+            $("#PlayerPrice").val(abtkey);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1 class="display-3">Top Eleven</h1>
+        <p class="lead">球员（牛）身价表</p>
+        <hr class="my-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="PlayerAge">年龄</label>
+                        <select class="form-control" name="PlayerAge" id="PlayerAge">
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                        </select>
+                        <script type="text/javascript">
+                            $("#PlayerAge").change(function () {
+                                AgeChange();
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">能力值</label>
+                        <select class="form-control" name="PlayerAbility" id="PlayerAbility">
+                        </select>
+                        <script type="text/javascript">
+                            $("#PlayerAbility").change(function () {
+                                AbtChange();
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">身价</label>
+                        <input type="text" name="PlayerPrice" id="PlayerPrice" class="form-control" placeholder=""
+                            aria-describedby="helpId">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <img src="PlayerPrice.png"
+            class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+    </div>
+</body>
+
+</html>
